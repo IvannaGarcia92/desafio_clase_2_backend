@@ -39,6 +39,7 @@ class ProductManager {
             }
             return product;
     }
+    
 }
 
 //Testing
@@ -48,6 +49,7 @@ const productManager = new ProductManager();
 //se llamará a getProducts recién creada la isntancia, debe devolver un arreglo vacío.
 console.log("getProducts recién creada la instancia de 'ProductManager', devuelve un arreglo vacío:");
 console.log(productManager.getProducts());
+resetProductManagerState();
 
 //agregamos los productos mediante el método addProduct, (verificamos que cada uno se cree con su determinado ID).
 console.log("Agregamos los productos mediante 'addProduct'.");
@@ -81,3 +83,4 @@ function resetProductManagerState() {
     productManager.productId = 1;
 }
 resetProductManagerState();
+
