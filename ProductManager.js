@@ -7,7 +7,7 @@ class ProductManager {
         //validamos que todos los campos sean obligatorios.
         if (!title || !description || !price || !thumbnail || !code || !stock === undefined) {
             console.error ("Todos los campos son obligatorios.");
-        return;
+            return;
         }
         //validamos que no se repita el producto utilizando su código para identificarlos.
         if (this.products.some((product) => product.code === code)) {
@@ -15,32 +15,30 @@ class ProductManager {
             return;
         }
         //agregamos cada producto con su ID autoincrementable.
-        const newProduct = {
+        const product = {
             id: this.productId++,
             title,
             description,
             price,
             thumbnail,
             code,
-            stock
+            stock,
         }
-        this.products.push(newProduct);
-        //devolvemos el producto recién agregado.
-        return newProduct;
-        }
-        //obtenemos los productos creados.
-        getProducts () {
-            return this.products;
-        }
-        //obtenemos el producto por su ID.
-        getProductsById (id) {
-            const product = this.products.find((item) => item.id === id);
+        this.products.push(product);
+    }
+    //obtenemos los productos creados.
+    getProducts () {
+        return this.products;
+    }
+    //obtenemos el producto por su ID.
+    getProductsById (id) {
+        const product = this.products.find((item) => item.id === id);
             if (!product) {
                 console.error ("Producto no encontrado.");
                 return;
             }
             return product;
-        }
+    }
 }
 
 //Testing
@@ -77,3 +75,9 @@ console.log("Ingresaremos un ID inexistente para verificar que funciona la valid
 console.log(productManager.getProductsById(15));
 console.log("Lo sentimos. No pudimos encontrar el producto.");
 
+//reset
+function resetProductManagerState() {
+    productManager.products = [];
+    productManager.productId = 1;
+}
+resetProductManagerState();
