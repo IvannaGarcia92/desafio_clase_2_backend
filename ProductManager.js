@@ -5,8 +5,8 @@ class ProductManager {
     }
     addProduct (title, description, price, thumbnail, code, stock) {
         //validamos que todos los campos sean obligatorios.
-        if (!title || !description || !price || !thumbnail || !code || !stock === undefined) {
-            console.error ("Todos los campos son obligatorios.");
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            console.log ("Todos los campos son obligatorios.");
             return;
         }
         //validamos que no se repita el producto utilizando su código para identificarlos.
@@ -14,7 +14,7 @@ class ProductManager {
             console.log (`El producto con el código ${code} ya existe.`);
             return;
         }
-        //agregamos cada producto con su ID autoincrementable.
+        //agregamos cada producto con su ID autoincrementable. (objeto product)
         const product = {
             id: this.productId++,
             title,
@@ -36,8 +36,10 @@ class ProductManager {
             if (!product) {
                 console.error ("Producto no encontrado.");
                 return;
+            } else {
+                return product;
             }
-            return product;
+            
     }
     
 }
@@ -57,7 +59,7 @@ productManager.addProduct("Remera", "Vestimenta", 5000, "imgremera.jpg", "v1", 1
 productManager.addProduct("Pantalon", "Vestimenta", 10000, "imgpantalon.jpg", "v2", 10000);
 productManager.addProduct("Zapatillas", "Calzado", 20000, "imgzapatillas.jpg", "c1", 10000);
 productManager.addProduct("Gorra con visera", "Accesorios", 6500, "imggorravisera.jpg", "a1", 10000);
-productManager.addProduct("Vestido", "Vestimenta", 9000, "imgvestido.jpg", "v3", 10000);
+productManager.addProduct("Vestido", "Vestimenta", 9000, "imgvestido.jpg", "v3");
 
 //obtendremos los productos agregados mediante el método getProducts, al cual llamaremos nuevamente.
 console.log("'getProducts' tras agregar los productos: Devuelve el Array con los productos recién agregados.");
